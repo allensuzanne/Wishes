@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wishes Edit</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'wish_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title-block">
+            <h1>Hello {{request.session.user}}! Let's edit your wish!</h1>
+            <a class="return" href="http://localhost:8000">Log Out</a>
+            <hr class="my-4">
+        </div>
+        {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form class="wishedits" action="/wishes/change/{{my_wish.id}}" method="POST">
+            {% csrf_token%}
+            <div class="form-group">
+                <label><h5>I wish for:</h5></label>
+                <input type="text" class="form-control" name = "item" value="{{my_wish.item}}">
+            </div>
+            <div class="form-group">
+                <label><h5>Description:</h5></label>
+                <input type="text" class="form-control" name = "description" value="{{my_wish.description}}">
+            </div>
+            <a href="/wishes" class="btn btn-info">Cancel</a>
+            <button type="submit" class="btn btn-outline-info">Submit Edit</button>
+        </form>
+    </div>
+</body>
+</html>

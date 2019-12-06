@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wishes Stats</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'wish_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title-block">
+            <h1>Hello {{request.session.user}}! These are your stats!</h1>
+            <a class="return" href="http://localhost:8000">Log Out</a>
+            <a class="dashboard" href="/wishes">Dashboard</a>
+            <hr class="my-4">
+        </div>
+        <h3>Total wishes granted to all users: {{all_granted.count}}</h3>
+        <br>
+        <br>
+        <h4>Your granted wishes: {{your_granted.count}}</h4>
+        <h4>Your pending wishes: {{your_wishes.count}}</h4>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+.container{
+    margin-top: 15px;
+}
+.registration, .login, .addABook, .all-books, .book-info, .favoriters, .your-books{
+    width: 45%;
+    align-content: center;
+    margin: 0 20px;
+}
+label, input, .addABook, .all-books, .registration, .login, .book-info, .favoriters, .userbuttons, .your-books{
+    display: inline-block;
+    vertical-align: top;
+}
+label{
+    width: 45%;
+}
+input{
+    width: 30%;
+}
+.return{
+    position: absolute;
+    top: 25px;
+    right: 15%;
+}
+a{
+    color: #17A2B9;
+}
+.title{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.description{
+    margin-bottom: 15px;
+}
+a.left{
+    margin-left: 20px;
+}
+#intro{
+    text-align: center;
+    margin: 15px 90px 15px 15px;
+    font-size: 45px;
+    color: #0f869b;
+}
+#header_buttons{
+    padding-left: 75%;
+}
+.wishedits{
+    min-width: 450px;
+    width: 45%;
+    margin: auto;
+}
+.dashboard{
+    position: absolute;
+    top: 25px;
+    right: 20%;
+}

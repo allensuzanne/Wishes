@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wishes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'wish_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title-block">
+            <h1>Welcome {{request.session.user}}!</h1>
+            <a class="return" href="http://localhost:8000">Log Out</a>
+            <hr class="my-4">
+        </div>
+        <div id="header_buttons">
+                <a href="/wishes/stats" class="btn btn-info">View Stats</a>
+            <form class="userbuttons" action="/wishes/new" method="POST">
+                {%csrf_token%}
+                <button type="submit" class="btn btn-outline-info">Make a Wish</button>
+            </form>
+        </div>
+        <h4>Your Wish List:</h4>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wish in my_wishes%}
+                <tr>
+                    <td>{{wish.item}}</td>
+                    <td>{{wish.created_at}}</td>
+                    <td><a href="/remove/{{wish.id}}">Remove</a> | <a href="/wishes/edit/{{wish.id}}">Edit</a> | <a href="/granted/{{wish.id}}">Granted</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4>Granted Wishes:</h4>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Wisher</th>
+                    <!-- <th scope="col">Date Added</th> -->
+                    <th scope="col">Date Granted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for granted in all_granted %}
+                <tr>
+                    <td>{{granted.item}}</td>
+                    <td>{{granted.wished_by.first_name}}</td>
+                    <td>{{granted.created_at}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
